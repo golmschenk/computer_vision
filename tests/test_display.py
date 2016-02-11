@@ -39,4 +39,13 @@ class TestDisplay:
 
         assert (([0.9, 0.9], [0.0, scipy.stats.norm.pdf(0.9, mean, sigma)]),) in mock_plt.plot.call_args_list
         assert (([1.0, 1.0], [0.0, scipy.stats.norm.pdf(1.0, mean, sigma)]),) in mock_plt.plot.call_args_list
-        assert mock_draw_normal.call_args == ((mean, sigma),)
+        assert mock_draw_normal.call_args == ((mean, sigma), {'color': None})
+
+    @patch('display.plt')
+    @patch('display.draw_normal')
+    @patch('display.norm')
+    def test_draw_normal_can_be_passed_a_color_for_the_normal_and_data(self, mock_norm, mock_draw_normal, mock_plt):
+        draw_data_under_normal([0], 0, 0, data_color='r', normal_color='b')
+
+        assert mock_draw_normal.call_args[1]['color'] == 'b'
+        assert mock_plt.plot.call_args[1]['color'] == 'r'
