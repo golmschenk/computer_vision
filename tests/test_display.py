@@ -3,7 +3,7 @@ import numpy as np
 import scipy
 
 import constant
-from display import draw_normal
+from display import draw_normal, draw_data_under_normal
 
 
 class TestDisplay:
@@ -27,3 +27,16 @@ class TestDisplay:
         draw_normal(0, 0, color='r')
 
         assert mock_plt.plot.call_args[1]['color'] == 'r'
+
+    @patch('display.draw_normal')
+    @patch('display.plt')
+    def test_draw_data_under_normal(self, mock_plt, mock_draw_normal):
+        data = [0.9, 1.0]
+        mean = 1
+        sigma = 1
+
+        draw_data_under_normal(data, mean, sigma)
+
+        assert (([0.9, 0.9], [0.0, scipy.stats.norm.pdf(0.9, mean, sigma)]),) in mock_plt.plot.call_args_list
+        assert (([1.0, 1.0], [0.0, scipy.stats.norm.pdf(1.0, mean, sigma)]),) in mock_plt.plot.call_args_list
+        assert mock_draw_normal.call_args == ((mean, sigma),)

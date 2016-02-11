@@ -27,3 +27,21 @@ def draw_normal(mean, sigma, color=None):
         plt.plot(plotting_space, distribution, color=color)
     else:
         plt.plot(plotting_space, distribution)
+
+
+def draw_data_under_normal(data, mean, sigma):
+    """
+    Draws a normal along with data points underneath the normal.
+
+    :param data: The data points to be drawn.
+    :type data: list[float]
+    :param mean: The mean of the normal distribution.
+    :type mean: float
+    :param sigma: The sigma of the normal distribution.
+    :type sigma: float
+    :return:
+    :rtype:
+    """
+    for datum in data:
+        plt.plot([datum, datum], [0.0, norm.pdf(datum, mean, sigma)])
+    draw_normal(mean, sigma)
