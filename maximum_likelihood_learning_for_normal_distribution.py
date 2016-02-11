@@ -2,6 +2,7 @@
 Code for the maximum likelihood learning for a normal distribution.
 """
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 import display
 
@@ -30,7 +31,9 @@ def display_model(training_data):
     """
     mean, variance = generate_parameters(training_data)
     sigma = variance ** 0.5
-    display.draw_data_under_normal(training_data, mean, sigma)
+    normal_color = sns.color_palette()[0]
+    data_color = sns.color_palette()[1]
+    display.draw_data_under_normal(training_data, mean, sigma, data_color=data_color, normal_color=normal_color)
     plt.show()
 
 
