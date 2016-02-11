@@ -40,6 +40,10 @@ def draw_data_under_normal(data, mean, sigma, data_color=None, normal_color=None
     :type mean: float
     :param sigma: The sigma of the normal distribution.
     :type sigma: float
+    :param data_color: The color to display the data lines as.
+    :type data_color: str
+    :param normal_color: The color to display the distribution as.
+    :type normal_color: str
     :return:
     :rtype:
     """
