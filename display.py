@@ -8,7 +8,7 @@ from scipy.stats import norm
 import constant
 
 
-def draw_normal(mean, sigma):
+def draw_normal(mean, sigma, color=None):
     """
     A function to consistently draw normal distributions the same way.
 
@@ -16,9 +16,14 @@ def draw_normal(mean, sigma):
     :type mean: float
     :param sigma: The sigma of the normal distribution.
     :type sigma: float
+    :param color: The color to display the distribution as.
+    :type color: str
     """
     plotting_space = np.linspace(norm.ppf(0.01, mean, sigma),
                                  norm.ppf(0.99, mean, sigma),
                                  constant.plot_samples)
     distribution = norm.pdf(plotting_space, mean, sigma)
-    plt.plot(plotting_space, distribution)
+    if color:
+        plt.plot(plotting_space, distribution, color=color)
+    else:
+        plt.plot(plotting_space, distribution)
