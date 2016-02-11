@@ -26,7 +26,5 @@ class TestMaximumLikelihoodLearningForNormalDistribution:
 
         display_model(training_data)
 
-        assert (([0.7, 0.7], [0.0, scipy.stats.norm.pdf(0.7, mean, sigma)]),) in mock_plt.plot.call_args_list
-        assert (([1.2, 1.2], [0.0, scipy.stats.norm.pdf(1.2, mean, sigma)]),) in mock_plt.plot.call_args_list
-        assert mock_display.draw_normal.call_args == ((mean, sigma),)
+        assert mock_display.draw_data_under_normal.call_args == ((training_data, mean, sigma),)
         assert mock_plt.show.called

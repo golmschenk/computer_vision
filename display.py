@@ -4,6 +4,7 @@ Code to help display the distributions and data.
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import norm
+import seaborn as sns
 
 import constant
 
