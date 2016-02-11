@@ -6,6 +6,7 @@ import numpy as np
 from scipy.stats import norm
 import seaborn as sns
 
+import display
 import constant
 
 
@@ -35,10 +36,7 @@ def display_model(training_data):
     sigma = variance ** 0.5
     for training_datum in training_data:
         plt.plot([training_datum, training_datum], [0.0, norm.pdf(training_datum, mean, sigma)])
-    plotting_space = np.linspace(norm.ppf(0.01, mean, sigma),
-                                 norm.ppf(0.99, mean, sigma),
-                                 constant.plot_samples)
-    plt.plot(plotting_space, norm.pdf(plotting_space, mean, sigma))
+    display.draw_normal(mean, sigma)
     plt.show()
 
 
